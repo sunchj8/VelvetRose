@@ -1,6 +1,14 @@
 <script setup>
 import { ref, computed, defineEmits, defineProps } from "vue";
 
+// Импорт изображений
+import duhi1 from 'duhi1.png';
+import duhi2 from 'duhi2.png';
+import duhi3 from 'duhi3.png';
+import duhi4 from 'duhi4.png';
+import duhi5 from 'duhi5.png';
+import duhi6 from 'duhi6.png';
+
 const props = defineProps({
   products: Array,
   cart: {
@@ -14,6 +22,16 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["updateCart", "openCatalog", "addToCart"]);
+
+// Объект для сопоставления ID продукта с изображением
+const productImages = {
+  'perfume-1': duhi1,
+  'perfume-2': duhi2,
+  'perfume-3': duhi3,
+  'perfume-4': duhi4,
+  'perfume-5': duhi5,
+  'perfume-6': duhi6,
+};
 
 const totalPrice = computed(() =>
   props.cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
@@ -84,51 +102,54 @@ function goToCart() {
 
 <template>
   <div>
-    
+    <!-- Модальное окно деталей продукта -->
     <div v-if="selectedProduct" class="product-detail-modal">
       <div class="overlay" @click="closeProduct"></div>
       <div class="product-detail">
         <button class="back-button" @click="closeProduct">Назад</button>
-        <img :src="`/duhi${selectedProduct.id.replace('perfume-', '')}.png`" :alt="selectedProduct.name" class="large-image" />
+        <img :src="productImages[selectedProduct.id]" :alt="selectedProduct.name" class="large-image" />
         <h2>{{ selectedProduct.name }}</h2>
         <p><strong>Цена:</strong> {{ selectedProduct.price }} ₽</p>
         <p>{{ selectedProduct.description }}</p>
-        <button @click="handleAddToCart(selectedProduct)" class="add-to-cart-button">Добавить в корзинуs
-        <span v-if="cartCounts[selectedProduct.id]">({{ cartCounts[selectedProduct.id] }})</span>
+        <button @click="handleAddToCart(selectedProduct)" class="add-to-cart-button">
+          Добавить в корзину
+          <span v-if="cartCounts[selectedProduct.id]">({{ cartCounts[selectedProduct.id] }})</span>
         </button>
       </div>
     </div>
 
+    <!-- Каталог продуктов -->
     <div v-else class="catalog">
       <div class="product-list">
-        <div v-for="product in products" :key="product.id" class="product-card">
-          <img :src="`/duhi${product.id.replace('perfume-', '')}.png`" :alt="product.name" class="product-image" />
+        <div v-for="(product, index) in products" :key="product.id" class="product-card">
+          <img :src="productImages[product.id]" :alt="product.name" class="product-image" />
           <h3 class="product-name">{{ product.name }}</h3>
           <p class="product-price">{{ product.price }} ₽</p>
-          <button @click="openProduct(product)" class="view-button">Подробнее</button>
-          <button @click="handleAddToCart(product)" class="add-to-cart-button">Добавить в корзину
-          <span v-if="cartCounts[product.id]">({{ cartCounts[product.id] }})</span>
+          <button @click="openProduct(product, index)" class="view-button">Подробнее</button>
+          <button @click="handleAddToCart(product)" class="add-to-cart-button">
+            Добавить в корзину
+            <span v-if="cartCounts[product.id]">({{ cartCounts[product.id] }})</span>
           </button>
         </div>
       </div>
     </div>
 
-    
+    <!-- Корзина -->
     <div v-if="cart.length > 0" class="cart-page">
       <h1>Корзина</h1>
       <ul class="cart-list">
         <li v-for="(product, index) in cart" :key="product.id" class="cart-item">
-          <img :src="`/duhi${product.id.replace('perfume-', '')}.png`" :alt="product.name" class="cart-image" />
+          <img :src="productImages[product.id]" :alt="product.name" class="cart-image" />
           <div class="cart-info">
             <p class="cart-name">{{ product.name }}</p>
             <p class="cart-price">Цена: {{ product.price }} ₽</p>
-            <p class="cart-quantity">Количество:
-            <button @click="updateQuantity(product, -1)">−</button>
-            {{ product.quantity }}
-            <button @click="updateQuantity(product, 1)">+</button>
+            <p class="cart-quantity">
+              Количество:
+              <button @click="updateQuantity(product, -1)">−</button>
+              {{ product.quantity }}
+              <button @click="updateQuantity(product, 1)">+</button>
             </p>
-            <p class="cart-total">Сумма: {{ product.price * product.quantity }} ₽
-            </p>
+            <p class="cart-total">Сумма: {{ product.price * product.quantity }} ₽</p>
           </div>
         </li>
       </ul>
@@ -137,12 +158,15 @@ function goToCart() {
       <button class="clear-cart-button" @click="clearCart">Очистить корзину</button>
     </div>
     
+    <!-- Пустая корзина -->
     <div v-else class="cart-page">
       <p>Ваша корзина пуста.</p>
     </div>
 
+    <!-- Кнопка перехода в каталог -->
     <button class="catalog-button" @click="goToCart">Перейти в каталог</button>
 
+    <!-- Модальное окно успешного заказа -->
     <div v-if="showSuccessModal" class="modal">
       <div class="modal-content">
         <p>Заказ успешно оформлен! Спасибо за покупку.</p>
@@ -150,6 +174,7 @@ function goToCart() {
       </div>
     </div>
 
+    <!-- Модальное окно авторизации -->
     <div v-if="showAuthModal" class="modal">
       <div class="modal-content">
         <p>Пожалуйста, зарегистрируйтесь или войдите, чтобы оформить заказ.</p>
@@ -160,7 +185,6 @@ function goToCart() {
 </template>
 
 <style scoped>
-
 .clear-cart-button {
   background-color: #e66969;
   color: black;
@@ -173,6 +197,7 @@ function goToCart() {
 .clear-cart-button:hover {
   background-color: #d3a6a6;
 }
+
 button {
   margin-top: 10px;
   padding: 10px 20px;
@@ -263,8 +288,6 @@ button:hover {
   align-items: center; 
   margin-right: 40px;
 }
-
-
 
 .cart-item {
   display: flex;
@@ -381,5 +404,50 @@ button:hover {
 
 .modal-content button:hover {
   background-color: #9a7a7a;
+}
+
+.product-detail-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.product-detail {
+  position: relative;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  z-index: 1001;
+}
+
+.large-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #f2d2d2;
 }
 </style>
