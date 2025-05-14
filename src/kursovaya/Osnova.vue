@@ -97,8 +97,6 @@ function goToGlav() {
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-navigation">
-          <div class="footer-logo" @click="goToGlav">
-            <img src='/logo.jpg' alt="Логотип" class="footer-logo-img" />
           </div>
           <div class="footer-links">
             <button @click="local.curPage = 1" :class="{ active: local.curPage == 1 }">О магазине</button>
@@ -137,14 +135,14 @@ function goToGlav() {
 .main-content {
   flex: 1;
   padding: 100px 20px 20px; 
-  min-height: calc(100vh - 220px);
+  min-height: calc(100vh - 150px); /* Учитываем высоту шапки и футера */
 }
 
 .content {
   padding-bottom: 20px;
 }
 
-.menu {
+.menu, .footer-menu {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -152,7 +150,7 @@ function goToGlav() {
   align-items: center;
 }
 
-.menu button {
+.menu button, .footer-menu button {
   padding: 0px 40px;
   background-color: #f2d2d2; 
   border: 2px solid transparent;
@@ -162,16 +160,16 @@ function goToGlav() {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.menu button:hover {
+.menu button:hover, .footer-menu button:hover {
   background-color: #d3a6a6; 
 }
 
-.menuIt, .active {
+.menuIt {
   border-color: #00bcd4;
   background-color: #e0f7fa;
 }
 
-.logo-img {
+.logo-img, .footer-logo-img {
   height: 50px;
   margin-right: 0px;
   cursor: pointer; 
