@@ -1,14 +1,6 @@
 <script setup>
 import { ref, computed, defineEmits, defineProps } from "vue";
 
-// Импорт изображений
-import duhi1 from 'duhi1.png';
-import duhi2 from 'duhi2.png';
-import duhi3 from 'duhi3.png';
-import duhi4 from 'duhi4.png';
-import duhi5 from 'duhi5.png';
-import duhi6 from 'duhi6.png';
-
 const props = defineProps({
   products: Array,
   cart: {
@@ -25,12 +17,12 @@ const emit = defineEmits(["updateCart", "openCatalog", "addToCart"]);
 
 // Объект для сопоставления ID продукта с изображением
 const productImages = {
-  'perfume-1': duhi1,
-  'perfume-2': duhi2,
-  'perfume-3': duhi3,
-  'perfume-4': duhi4,
-  'perfume-5': duhi5,
-  'perfume-6': duhi6,
+  'perfume-1': 'duhi1.png',
+  'perfume-2': 'duhi2.png',
+  'perfume-3': 'duhi3.png',
+  'perfume-4': 'duhi4.png',
+  'perfume-5': 'duhi5.png',
+  'perfume-6': 'duhi6.png',
 };
 
 const totalPrice = computed(() =>
