@@ -3,6 +3,9 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/VelvetRose/',
   plugins: [vue()],
 })
+
+module.exports = {
+  publicPath: process.env.NODE_ENV === 'production' ? '/VelvetRose/' : '/'
+}

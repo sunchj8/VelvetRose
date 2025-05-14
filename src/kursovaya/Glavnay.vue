@@ -4,9 +4,9 @@ import { ref } from "vue";
 
 const slide = ref(0);
 const slides = [
-  "/slad1.jpg",
-  "/slad2.jpg",
-  "/slad3.jpg"
+  "slad1.jpg",
+  "slad2.jpg",
+  "slad3.jpg"
 ];
 
 function prevSlide() {
