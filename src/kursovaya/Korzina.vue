@@ -89,7 +89,7 @@ function goToCart() {
       <div class="overlay" @click="closeProduct"></div>
       <div class="product-detail">
         <button class="back-button" @click="closeProduct">Назад</button>
-        <img :src="`/VelvetRose/duhi${selectedProduct.id.replace('perfume-', '')}.png`" :alt="selectedProduct.name" class="large-image" />
+        <img :src="`/duhi${selectedProduct.id.replace('perfume-', '')}.png`" :alt="selectedProduct.name" class="large-image" />
         <h2>{{ selectedProduct.name }}</h2>
         <p><strong>Цена:</strong> {{ selectedProduct.price }} ₽</p>
         <p>{{ selectedProduct.description }}</p>
@@ -102,7 +102,7 @@ function goToCart() {
     <div v-else class="catalog">
       <div class="product-list">
         <div v-for="product in products" :key="product.id" class="product-card">
-          <img :src="`/VelvetRose/duhi${product.id.replace('perfume-', '')}.png`" :alt="product.name" class="product-image" />
+          <img :src="`/duhi${product.id.replace('perfume-', '')}.png`" :alt="product.name" class="product-image" />
           <h3 class="product-name">{{ product.name }}</h3>
           <p class="product-price">{{ product.price }} ₽</p>
           <button @click="openProduct(product)" class="view-button">Подробнее</button>
