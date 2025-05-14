@@ -92,6 +92,16 @@ function goToGlav() {
         />
         <Reg v-if="local.curPage == 6" :user="local.user" @RegistorEmit="regist" @logoutEmit="logoutUser" />
       </div>
+
+      <!-- Добавляем подвал -->
+      <div class="footer">
+        <p>© 2025 VelvetRose. Все права защищены.</p>
+        <div class="footer-links">
+          <a href="#">Политика конфиденциальности</a>
+          <a href="#">Условия использования</a>
+          <a href="#">Контакты</a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -153,5 +163,33 @@ function goToGlav() {
   width: 100%; 
   display: flex;
   flex-direction: column; 
+}
+
+/* Стиль для подвала */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #f2d2d2;
+  margin-top: auto;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
 }
 </style>
