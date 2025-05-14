@@ -66,7 +66,7 @@ function goToGlav() {
       <div class="header">
         <div class="menu">
           <img 
-            src="/logo.jpg" 
+            src='/logo.jpg' 
             alt="Логотип" 
             class="logo-img" 
             @click="goToGlav" 

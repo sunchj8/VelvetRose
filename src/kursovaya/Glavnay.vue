@@ -33,7 +33,7 @@ function nextSlide() {
     </section>
 
     <div class="image-placeholder">
-      <img src="/foto1.jpg" alt="Наши флаконы">
+      <img src='/foto1.jpg' alt="Наши флаконы">
     </div>
 
     <section class="onas">
@@ -65,7 +65,7 @@ function nextSlide() {
             </p>
           </div>
           <div class="image-placeholder1">
-            <img src="/foto11.png" alt="Ароматы" />
+            <img src='/foto11.png' alt="Ароматы" />
           </div>
         </div>
 
@@ -77,7 +77,7 @@ function nextSlide() {
             </p>
           </div>
           <div class="image-placeholder1">
-            <img src="/foto22.png" alt="Стиль" />
+            <img src='/foto22.png' alt="Стиль" />
           </div>
         </div>
 
@@ -89,7 +89,7 @@ function nextSlide() {
             </p>
           </div>
           <div class="image-placeholder1">
-            <img src="/foto33.png" alt="Подарки" />
+            <img src='/foto33.png' alt="Подарки" />
           </div>
         </div>
       </div>
