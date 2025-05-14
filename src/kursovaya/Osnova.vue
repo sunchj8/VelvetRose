@@ -79,7 +79,7 @@ function goToGlav() {
         </div>
       </div>
 
-      <div>
+      <div class="content">
         <Glavnay v-if="local.curPage == 1" />
         <Katolog v-if="local.curPage == 2" :products="local.products" @addToCart="addToCart" @openCart="openCart" />
         <Dostavka v-if="local.curPage == 4" />
@@ -92,22 +92,30 @@ function goToGlav() {
         />
         <Reg v-if="local.curPage == 6" :user="local.user" @RegistorEmit="regist" @logoutEmit="logoutUser" />
       </div>
-
-      <!-- Добавляем подвал -->
-      <div class="footer">
-        <p>© 2025 VelvetRose. Все права защищены.</p>
-        <div class="footer-links">
-          <a href="#">Политика конфиденциальности</a>
-          <a href="#">Условия использования</a>
-          <a href="#">Контакты</a>
-        </div>
-      </div>
     </div>
+
+    <footer class="footer">
+      <div class="footer-menu">
+        <img 
+          src='/logo.jpg' 
+          alt="Логотип" 
+          class="footer-logo-img" 
+          @click="goToGlav" 
+        />
+        <button @click="local.curPage = 1" :class="{ menuIt: local.curPage == 1 }">О магазине</button>
+        <button @click="local.curPage = 4" :class="{ menuIt: local.curPage == 4 }">Доставка</button>
+        <button @click="openCatalog" :class="{ menuIt: local.curPage == 2 }">Каталог</button>
+        <button @click="openCart" :class="{ menuIt: local.curPage == 5 }">Корзина</button>
+        <button @click="local.curPage = 6" :class="{ menuIt: local.curPage == 6, darkButton: local.user }">{{ authButtonText }}</button>
+      </div>
+      <div class="footer-info">
+        <p>© 2023 Магазин парфюмерии. Все права защищены.</p>
+      </div>
+    </footer>
   </div>
 </template>
 
 <style scoped>
-
 .header {
   position: fixed;
   top: 0;
@@ -124,16 +132,22 @@ function goToGlav() {
 .main-content {
   flex: 1;
   padding: 100px 20px 20px; 
+  min-height: calc(100vh - 150px); /* Учитываем высоту шапки и футера */
 }
 
-.menu {
+.content {
+  padding-bottom: 20px;
+}
+
+.menu, .footer-menu {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
 
-.menu button {
+.menu button, .footer-menu button {
   padding: 0px 40px;
   background-color: #f2d2d2; 
   border: 2px solid transparent;
@@ -143,7 +157,7 @@ function goToGlav() {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.menu button:hover {
+.menu button:hover, .footer-menu button:hover {
   background-color: #d3a6a6; 
 }
 
@@ -152,44 +166,48 @@ function goToGlav() {
   background-color: #e0f7fa;
 }
 
-.logo-img {
+.logo-img, .footer-logo-img {
   height: 50px;
   margin-right: 0px;
   cursor: pointer; 
 }
 
 .app-wrapper {
-  height: 100%; 
-  width: 100%; 
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Стиль для подвала */
 .footer {
-  padding: 20px;
+  background-color: rgba(255, 192, 203, 0.202);
+  padding: 20px 10px;
   text-align: center;
-  background-color: #f2d2d2;
-  margin-top: auto;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.footer p {
-  margin: 0;
+.footer-info {
+  margin-top: 15px;
   font-size: 14px;
-  color: #333;
+  color: #555;
 }
 
-.footer-links {
-  margin-top: 10px;
+.footer-logo-img {
+  height: 40px;
 }
 
-.footer-links a {
-  margin: 0 15px;
-  text-decoration: none;
-  color: #007bff;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
+@media (max-width: 768px) {
+  .menu, .footer-menu {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .menu button, .footer-menu button {
+    width: 100%;
+    padding: 8px 0;
+  }
+  
+  .main-content {
+    padding: 80px 10px 10px;
+  }
 }
 </style>
