@@ -95,21 +95,26 @@ function goToGlav() {
     </div>
 
     <footer class="footer">
-      <div class="footer-menu">
-        <img 
-          src='/logo.jpg' 
-          alt="Логотип" 
-          class="footer-logo-img" 
-          @click="goToGlav" 
-        />
-        <button @click="local.curPage = 1" :class="{ menuIt: local.curPage == 1 }">О магазине</button>
-        <button @click="local.curPage = 4" :class="{ menuIt: local.curPage == 4 }">Доставка</button>
-        <button @click="openCatalog" :class="{ menuIt: local.curPage == 2 }">Каталог</button>
-        <button @click="openCart" :class="{ menuIt: local.curPage == 5 }">Корзина</button>
-        <button @click="local.curPage = 6" :class="{ menuIt: local.curPage == 6, darkButton: local.user }">{{ authButtonText }}</button>
-      </div>
-      <div class="footer-info">
-        <p>© 2023 Магазин парфюмерии. Все права защищены.</p>
+      <div class="footer-content">
+        <div class="footer-navigation">
+          <div class="footer-logo" @click="goToGlav">
+            <img src='/logo.jpg' alt="Логотип" class="footer-logo-img" />
+          </div>
+          <div class="footer-links">
+            <button @click="local.curPage = 1" :class="{ active: local.curPage == 1 }">О магазине</button>
+            <button @click="local.curPage = 4" :class="{ active: local.curPage == 4 }">Доставка</button>
+            <button @click="openCatalog" :class="{ active: local.curPage == 2 }">Каталог</button>
+            <button @click="openCart" :class="{ active: local.curPage == 5 }">Корзина</button>
+            <button @click="local.curPage = 6" :class="{ active: local.curPage == 6 }">{{ authButtonText }}</button>
+          </div>
+        </div>
+        <div class="footer-info">
+          <p>© 2023 Магазин парфюмерии. Все права защищены.</p>
+          <div class="footer-contacts">
+            <p>Телефон: +7 (123) 456-78-90</p>
+            <p>Email: info@perfume-shop.ru</p>
+          </div>
+        </div>
       </div>
     </footer>
   </div>
@@ -132,14 +137,14 @@ function goToGlav() {
 .main-content {
   flex: 1;
   padding: 100px 20px 20px; 
-  min-height: calc(100vh - 150px); /* Учитываем высоту шапки и футера */
+  min-height: calc(100vh - 220px);
 }
 
 .content {
   padding-bottom: 20px;
 }
 
-.menu, .footer-menu {
+.menu {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -147,7 +152,7 @@ function goToGlav() {
   align-items: center;
 }
 
-.menu button, .footer-menu button {
+.menu button {
   padding: 0px 40px;
   background-color: #f2d2d2; 
   border: 2px solid transparent;
@@ -157,16 +162,16 @@ function goToGlav() {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.menu button:hover, .footer-menu button:hover {
+.menu button:hover {
   background-color: #d3a6a6; 
 }
 
-.menuIt {
+.menuIt, .active {
   border-color: #00bcd4;
   background-color: #e0f7fa;
 }
 
-.logo-img, .footer-logo-img {
+.logo-img {
   height: 50px;
   margin-right: 0px;
   cursor: pointer; 
@@ -180,34 +185,82 @@ function goToGlav() {
 
 .footer {
   background-color: rgba(255, 192, 203, 0.202);
-  padding: 20px 10px;
-  text-align: center;
+  padding: 30px 20px 20px;
   box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.footer-info {
-  margin-top: 15px;
-  font-size: 14px;
-  color: #555;
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.footer-logo {
+  cursor: pointer;
 }
 
 .footer-logo-img {
   height: 40px;
 }
 
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.footer-links button {
+  padding: 8px 20px;
+  background-color: #f2d2d2;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-links button:hover {
+  background-color: #d3a6a6;
+}
+
+.footer-info {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  margin-top: 20px;
+}
+
+.footer-contacts {
+  margin-top: 10px;
+  font-size: 13px;
+}
+
 @media (max-width: 768px) {
-  .menu, .footer-menu {
+  .menu, .footer-links {
     flex-direction: column;
     gap: 8px;
   }
   
-  .menu button, .footer-menu button {
+  .menu button, .footer-links button {
     width: 100%;
     padding: 8px 0;
   }
   
   .main-content {
     padding: 80px 10px 10px;
+  }
+  
+  .footer-navigation {
+    flex-direction: column;
+    gap: 15px;
   }
 }
 </style>
