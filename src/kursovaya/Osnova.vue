@@ -95,25 +95,25 @@ function goToGlav() {
     </div>
 
     <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-navigation">
-          <div class="footer-links">
-            <button @click="local.curPage = 1" :class="{ active: local.curPage == 1 }">О магазине</button>
-            <button @click="local.curPage = 4" :class="{ active: local.curPage == 4 }">Доставка</button>
-            <button @click="openCatalog" :class="{ active: local.curPage == 2 }">Каталог</button>
-            <button @click="openCart" :class="{ active: local.curPage == 5 }">Корзина</button>
-            <button @click="local.curPage = 6" :class="{ active: local.curPage == 6 }">{{ authButtonText }}</button>
-          </div>
-        </div>
-        <div class="footer-info">
-          <p>© 2023 Магазин парфюмерии. Все права защищены.</p>
-          <div class="footer-contacts">
-            <p>Телефон: +7 (123) 456-78-90</p>
-            <p>Email: info@perfume-shop.ru</p>
-          </div>
-        </div>
+  <div class="footer-content">
+    <div class="footer-navigation">
+      <div class="footer-links">
+        <button @click="local.curPage = 1" :class="{ active: local.curPage == 1 }">О магазине</button>
+        <button @click="local.curPage = 4" :class="{ active: local.curPage == 4 }">Доставка</button>
+        <button @click="openCatalog" :class="{ active: local.curPage == 2 }">Каталог</button>
+        <button @click="openCart" :class="{ active: local.curPage == 5 }">Корзина</button>
+        <button @click="local.curPage = 6" :class="{ active: local.curPage == 6 }">{{ authButtonText }}</button>
       </div>
-    </footer>
+    </div>
+    <div class="footer-info">
+      <p>© 2023 Магазин парфюмерии. Все права защищены.</p>
+      <div class="footer-contacts">
+        <p>Телефон: +7 (123) 456-78-90</p>
+        <p>Email: info@perfume-shop.ru</p>
+      </div>
+    </div>
+  </div>
+</footer>
   </div>
 </template>
 
@@ -184,30 +184,28 @@ function goToGlav() {
 
 .footer {
   background-color: rgba(255, 192, 203, 0.202);
-  padding: 30px 300px 20px;
+  padding: 30px 20px 20px;
   box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer-navigation {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  width: 100%;
   margin-bottom: 20px;
 }
-
-
 
 .footer-links {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  justify-content: flex-start; 
+  justify-content: center;
 }
 
 .footer-links button {
