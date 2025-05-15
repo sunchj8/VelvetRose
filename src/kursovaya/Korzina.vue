@@ -15,7 +15,7 @@ const props = defineProps({
 
 const emit = defineEmits(["updateCart", "openCatalog", "addToCart"]);
 
-// Объект для сопоставления ID продукта с изображением
+
 const productImages = {
   'perfume-1': 'duhi1.png',
   'perfume-2': 'duhi2.png',
@@ -94,7 +94,7 @@ function goToCart() {
 
 <template>
   <div>
-    <!-- Модальное окно деталей продукта -->
+   
     <div v-if="selectedProduct" class="product-detail-modal">
       <div class="overlay" @click="closeProduct"></div>
       <div class="product-detail">
@@ -110,7 +110,7 @@ function goToCart() {
       </div>
     </div>
 
-    <!-- Каталог продуктов -->
+    
     <div v-else class="catalog">
       <div class="product-list">
         <div v-for="(product, index) in products" :key="product.id" class="product-card">
@@ -126,7 +126,7 @@ function goToCart() {
       </div>
     </div>
 
-    <!-- Корзина -->
+    
     <div v-if="cart.length > 0" class="cart-page">
       <h1>Корзина</h1>
       <ul class="cart-list">
@@ -150,15 +150,15 @@ function goToCart() {
       <button class="clear-cart-button" @click="clearCart">Очистить корзину</button>
     </div>
     
-    <!-- Пустая корзина -->
+    
     <div v-else class="cart-page">
       <p>Ваша корзина пуста.</p>
     </div>
 
-    <!-- Кнопка перехода в каталог -->
+    
     <button class="catalog-button" @click="goToCart">Перейти в каталог</button>
 
-    <!-- Модальное окно успешного заказа -->
+    
     <div v-if="showSuccessModal" class="modal">
       <div class="modal-content">
         <p>Заказ успешно оформлен! Спасибо за покупку.</p>
@@ -166,7 +166,7 @@ function goToCart() {
       </div>
     </div>
 
-    <!-- Модальное окно авторизации -->
+    
     <div v-if="showAuthModal" class="modal">
       <div class="modal-content">
         <p>Пожалуйста, зарегистрируйтесь или войдите, чтобы оформить заказ.</p>

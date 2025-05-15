@@ -97,7 +97,6 @@ function goToGlav() {
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-navigation">
-          </div>
           <div class="footer-links">
             <button @click="local.curPage = 1" :class="{ active: local.curPage == 1 }">О магазине</button>
             <button @click="local.curPage = 4" :class="{ active: local.curPage == 4 }">Доставка</button>
@@ -135,7 +134,7 @@ function goToGlav() {
 .main-content {
   flex: 1;
   padding: 100px 20px 20px; 
-  min-height: calc(100vh - 150px); /* Учитываем высоту шапки и футера */
+  min-height: calc(100vh - 150px);
 }
 
 .content {
@@ -150,15 +149,17 @@ function goToGlav() {
   align-items: center;
 }
 
-.menu button, .footer-menu button {
-  padding: 0px 40px;
-  background-color: #f2d2d2; 
+.menu button, .footer-links button {
+  padding: 8px 20px;
+  background-color: #f2d2d2;
   border: 2px solid transparent;
-  border-radius: 25px; 
+  border-radius: 25px;
   cursor: pointer;
   transition: 0.3s;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
 }
+
 
 .menu button:hover, .footer-menu button:hover {
   background-color: #d3a6a6; 
@@ -183,7 +184,7 @@ function goToGlav() {
 
 .footer {
   background-color: rgba(255, 192, 203, 0.202);
-  padding: 30px 20px 20px;
+  padding: 30px 300px 20px;
   box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -200,19 +201,13 @@ function goToGlav() {
   margin-bottom: 20px;
 }
 
-.footer-logo {
-  cursor: pointer;
-}
 
-.footer-logo-img {
-  height: 40px;
-}
 
 .footer-links {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  justify-content: center;
+  justify-content: flex-start; 
 }
 
 .footer-links button {
@@ -241,24 +236,4 @@ function goToGlav() {
   font-size: 13px;
 }
 
-@media (max-width: 768px) {
-  .menu, .footer-links {
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .menu button, .footer-links button {
-    width: 100%;
-    padding: 8px 0;
-  }
-  
-  .main-content {
-    padding: 80px 10px 10px;
-  }
-  
-  .footer-navigation {
-    flex-direction: column;
-    gap: 15px;
-  }
-}
 </style>
